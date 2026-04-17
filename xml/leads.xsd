@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="leads">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="lead" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre" type="xs:string"/>
+                            <xs:element name="apellidos" type="xs:string"/>
+                            <xs:element name="email" type="EmailType"/>
+                            <xs:element name="telefono" type="TelefonoType"/>
+                            <xs:element name="cargo" type="xs:string"/>
+                            <xs:element name="interes" type="xs:string"/>
+                            <xs:element name="puntuacion" type="PuntuacionType"/>
+                            <xs:element name="prioridad" type="PrioridadType"/>
+                            <xs:element name="fechaRegistro" type="xs:dateTime"/>
+                            <xs:element name="observaciones" type="xs:string"/>
+                            <xs:element name="empresa" type="ElementoConIdType"/>
+                            <xs:element name="fuente" type="ElementoConIdType"/>
+                            <xs:element name="estado" type="ElementoConIdType"/>
+                            <xs:element name="usuarioResponsable" type="ElementoConIdType"/>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:int" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="PrioridadType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="alta"/>
+            <xs:enumeration value="media"/>
+            <xs:enumeration value="baja"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PuntuacionType">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TelefonoType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{9}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EmailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^@]+\.[^@]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ElementoConIdType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="xs:int" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+</xs:schema>

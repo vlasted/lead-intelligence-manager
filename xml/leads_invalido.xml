@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<leads xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="leads.xsd">
+
+    <lead id="1">
+        <nombre>Pedro</nombre>
+        <apellidos>Lopez</apellidos>
+        <email>pedro.lopez#empresa.com</email>
+        <telefono>12345</telefono>
+        <cargo>CEO</cargo>
+        <interes>Automatizacion comercial</interes>
+        <puntuacion>150</puntuacion>
+        <prioridad>urgente</prioridad>
+        <fechaRegistro>2026/04/20 10:00</fechaRegistro>
+        <observaciones>Ejemplo de XML invalido</observaciones>
+        <empresa id="1">Empresa Demo</empresa>
+        <fuente id="2">LinkedIn</fuente>
+        <estado id="1">Nuevo</estado>
+        <usuarioResponsable id="1">Lenin Ramirez</usuarioResponsable>
+    </lead>
+
+</leads>

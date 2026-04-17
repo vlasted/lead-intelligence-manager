@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<leads xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="leads.xsd">
+
+    <lead id="1">
+        <nombre>Ana</nombre>
+        <apellidos>Martinez</apellidos>
+        <email>ana.martinez@datanova.com</email>
+        <telefono>600111222</telefono>
+        <cargo>CTO</cargo>
+        <interes>Solucion de analitica comercial</interes>
+        <puntuacion>85</puntuacion>
+        <prioridad>alta</prioridad>
+        <fechaRegistro>2026-04-10T09:15:00</fechaRegistro>
+        <observaciones>Mostro interes en una demo tecnica</observaciones>
+        <empresa id="1">DataNova Consulting</empresa>
+        <fuente id="1">Formulario web</fuente>
+        <estado id="3">En seguimiento</estado>
+        <usuarioResponsable id="2">Marta Lopez</usuarioResponsable>
+    </lead>
+
+    <lead id="2">
+        <nombre>Javier</nombre>
+        <apellidos>Santos</apellidos>
+        <email>javier.santos@blueretail.com</email>
+        <telefono>600222333</telefono>
+        <cargo>Responsable de expansion</cargo>
+        <interes>Herramienta para clasificacion de leads</interes>
+        <puntuacion>72</puntuacion>
+        <prioridad>media</prioridad>
+        <fechaRegistro>2026-04-11T10:30:00</fechaRegistro>
+        <observaciones>Pide informacion sobre precios y tiempos de implantacion</observaciones>
+        <empresa id="2">BlueRetail Group</empresa>
+        <fuente id="2">LinkedIn</fuente>
+        <estado id="2">Contactado</estado>
+        <usuarioResponsable id="2">Marta Lopez</usuarioResponsable>
+    </lead>
+
+    <lead id="3">
+        <nombre>Lucia</nombre>
+        <apellidos>Gomez</apellidos>
+        <email>lucia.gomez@fincore.com</email>
+        <telefono>600333444</telefono>
+        <cargo>Directora de operaciones</cargo>
+        <interes>Sistema de seguimiento comercial</interes>
+        <puntuacion>91</puntuacion>
+        <prioridad>alta</prioridad>
+        <fechaRegistro>2026-04-12T11:00:00</fechaRegistro>
+        <observaciones>Lead muy bien perfilado y con necesidad inmediata</observaciones>
+        <empresa id="3">FinCore Solutions</empresa>
+        <fuente id="3">Campaña Ads</fuente>
+        <estado id="3">En seguimiento</estado>
+        <usuarioResponsable id="3">Carlos Ruiz</usuarioResponsable>
+    </lead>
+
+    <lead id="4">
+        <nombre>Pablo</nombre>
+        <apellidos>Herrera</apellidos>
+        <email>pablo.herrera@greenlogistics.com</email>
+        <telefono>600444555</telefono>
+        <cargo>CEO</cargo>
+        <interes>Automatizacion del proceso de captacion</interes>
+        <puntuacion>65</puntuacion>
+        <prioridad>media</prioridad>
+        <fechaRegistro>2026-04-13T12:20:00</fechaRegistro>
+        <observaciones>Solicito una reunion para la proxima semana</observaciones>
+        <empresa id="4">GreenLogistics Hub</empresa>
+        <fuente id="4">Recomendacion</fuente>
+        <estado id="1">Nuevo</estado>
+        <usuarioResponsable id="3">Carlos Ruiz</usuarioResponsable>
+    </lead>
+
+    <lead id="5">
+        <nombre>Elena</nombre>
+        <apellidos>Ruiz</apellidos>
+        <email>elena.ruiz@datanova.com</email>
+        <telefono>600555666</telefono>
+        <cargo>Marketing Manager</cargo>
+        <interes>Mejora de conversion de leads</interes>
+        <puntuacion>58</puntuacion>
+        <prioridad>baja</prioridad>
+        <fechaRegistro>2026-04-14T08:45:00</fechaRegistro>
+        <observaciones>Interes inicial, pero aun sin presupuesto definido</observaciones>
+        <empresa id="1">DataNova Consulting</empresa>
+        <fuente id="1">Formulario web</fuente>
+        <estado id="2">Contactado</estado>
+        <usuarioResponsable id="2">Marta Lopez</usuarioResponsable>
+    </lead>
+
+    <lead id="6">
+        <nombre>Marta</nombre>
+        <apellidos>Delgado</apellidos>
+        <email>marta.delgado@fincore.com</email>
+        <telefono>600777888</telefono>
+        <cargo>Head of Sales</cargo>
+        <interes>Scoring y priorizacion automatica</interes>
+        <puntuacion>88</puntuacion>
+        <prioridad>alta</prioridad>
+        <fechaRegistro>2026-04-15T09:05:00</fechaRegistro>
+        <observaciones>Muy interesada en piloto inicial</observaciones>
+        <empresa id="3">FinCore Solutions</empresa>
+        <fuente id="2">LinkedIn</fuente>
+        <estado id="5">Convertido</estado>
+        <usuarioResponsable id="2">Marta Lopez</usuarioResponsable>
+    </lead>
+
+</leads>
