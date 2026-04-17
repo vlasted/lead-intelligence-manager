@@ -51,11 +51,15 @@ public class MainMenuFrame extends JFrame {
         JButton addButton = new JButton("Añadir lead");
         addButton.addActionListener(e -> openAddLeadDialog());
 
+        JButton editButton = new JButton("Editar lead");
+        editButton.addActionListener(e -> openEditLeadDialog());
+
         JButton refreshButton = new JButton("Recargar leads");
         refreshButton.addActionListener(e -> loadLeads());
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(addButton);
+        bottomPanel.add(editButton);
         bottomPanel.add(refreshButton);
 
         add(bottomPanel, BorderLayout.SOUTH);
@@ -63,6 +67,32 @@ public class MainMenuFrame extends JFrame {
 
     private void openAddLeadDialog() {
         AddLeadFrame dialog = new AddLeadFrame(this, this::loadLeads);
+        dialog.setVisible(true);
+    }
+
+    private void openEditLeadDialog() {
+        int selectedRow = tableLeads.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Debes seleccionar un lead para editar.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int idLead = (int) tableModel.getValueAt(selectedRow, 0);
+        Lead lead = leadDAO.getLeadById(idLead);
+
+        if (lead == null) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo cargar el lead seleccionado.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        EditLeadFrame dialog = new EditLeadFrame(this, lead, this::loadLeads);
         dialog.setVisible(true);
     }
 

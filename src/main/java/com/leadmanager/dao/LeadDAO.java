@@ -97,4 +97,83 @@ public class LeadDAO {
         }
         return value.trim();
     }
+
+    public Lead getLeadById(int idLead) {
+        String sql = "SELECT * FROM leads WHERE id_lead = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, idLead);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Lead lead = new Lead();
+
+                    lead.setIdLead(resultSet.getInt("id_lead"));
+                    lead.setNombre(resultSet.getString("nombre"));
+                    lead.setApellidos(resultSet.getString("apellidos"));
+                    lead.setEmail(resultSet.getString("email"));
+                    lead.setTelefono(resultSet.getString("telefono"));
+                    lead.setCargo(resultSet.getString("cargo"));
+                    lead.setInteres(resultSet.getString("interes"));
+                    lead.setPuntuacion(resultSet.getInt("puntuacion"));
+                    lead.setPrioridad(resultSet.getString("prioridad"));
+
+                    Timestamp timestamp = resultSet.getTimestamp("fecha_registro");
+                    if (timestamp != null) {
+                        lead.setFechaRegistro(timestamp.toLocalDateTime());
+                    }
+
+                    lead.setObservaciones(resultSet.getString("observaciones"));
+                    lead.setIdEmpresa(resultSet.getInt("id_empresa"));
+                    lead.setIdFuente(resultSet.getInt("id_fuente"));
+                    lead.setIdEstado(resultSet.getInt("id_estado"));
+                    lead.setIdUsuarioResponsable(resultSet.getInt("id_usuario_responsable"));
+
+                    return lead;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener el lead por ID.");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public boolean updateLead(Lead lead) {
+        String sql = "UPDATE leads SET " +
+                "nombre = ?, apellidos = ?, email = ?, telefono = ?, cargo = ?, interes = ?, " +
+                "puntuacion = ?, prioridad = ?, observaciones = ?, id_empresa = ?, id_fuente = ?, " +
+                "id_estado = ?, id_usuario_responsable = ? " +
+                "WHERE id_lead = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, lead.getNombre());
+            statement.setString(2, emptyToNull(lead.getApellidos()));
+            statement.setString(3, lead.getEmail());
+            statement.setString(4, emptyToNull(lead.getTelefono()));
+            statement.setString(5, emptyToNull(lead.getCargo()));
+            statement.setString(6, emptyToNull(lead.getInteres()));
+            statement.setInt(7, lead.getPuntuacion());
+            statement.setString(8, lead.getPrioridad());
+            statement.setString(9, emptyToNull(lead.getObservaciones()));
+            statement.setInt(10, lead.getIdEmpresa());
+            statement.setInt(11, lead.getIdFuente());
+            statement.setInt(12, lead.getIdEstado());
+            statement.setInt(13, lead.getIdUsuarioResponsable());
+            statement.setInt(14, lead.getIdLead());
+
+            return statement.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar el lead en la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
