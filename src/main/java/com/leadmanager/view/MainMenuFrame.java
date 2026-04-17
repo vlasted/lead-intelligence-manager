@@ -54,12 +54,16 @@ public class MainMenuFrame extends JFrame {
         JButton editButton = new JButton("Editar lead");
         editButton.addActionListener(e -> openEditLeadDialog());
 
+        JButton deleteButton = new JButton("Eliminar lead");
+        deleteButton.addActionListener(e -> deleteSelectedLead());
+
         JButton refreshButton = new JButton("Recargar leads");
         refreshButton.addActionListener(e -> loadLeads());
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(addButton);
         bottomPanel.add(editButton);
+        bottomPanel.add(deleteButton);
         bottomPanel.add(refreshButton);
 
         add(bottomPanel, BorderLayout.SOUTH);
@@ -94,6 +98,49 @@ public class MainMenuFrame extends JFrame {
 
         EditLeadFrame dialog = new EditLeadFrame(this, lead, this::loadLeads);
         dialog.setVisible(true);
+    }
+
+    private void deleteSelectedLead() {
+        int selectedRow = tableLeads.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this,
+                    "Debes seleccionar un lead para eliminar.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int idLead = (int) tableModel.getValueAt(selectedRow, 0);
+        String nombreLead = String.valueOf(tableModel.getValueAt(selectedRow, 1));
+        String apellidosLead = String.valueOf(tableModel.getValueAt(selectedRow, 2));
+
+        int confirm = JOptionPane.showConfirmDialog(
+                this,
+                "¿Seguro que quieres eliminar el lead: " + nombreLead + " " + apellidosLead + "?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        boolean deleted = leadDAO.deleteLead(idLead);
+
+        if (deleted) {
+            JOptionPane.showMessageDialog(this,
+                    "Lead eliminado correctamente.",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+            loadLeads();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo eliminar el lead.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void loadLeads() {

@@ -176,4 +176,20 @@ public class LeadDAO {
             return false;
         }
     }
+
+    public boolean deleteLead(int idLead) {
+        String sql = "DELETE FROM leads WHERE id_lead = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, idLead);
+            return statement.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar el lead de la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
