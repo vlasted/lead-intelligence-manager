@@ -58,4 +58,43 @@ public class LeadDAO {
 
         return leads;
     }
+
+    public boolean insertLead(Lead lead) {
+        String sql = "INSERT INTO leads " +
+                "(nombre, apellidos, email, telefono, cargo, interes, puntuacion, prioridad, observaciones, " +
+                "id_empresa, id_fuente, id_estado, id_usuario_responsable) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, lead.getNombre());
+            statement.setString(2, emptyToNull(lead.getApellidos()));
+            statement.setString(3, lead.getEmail());
+            statement.setString(4, emptyToNull(lead.getTelefono()));
+            statement.setString(5, emptyToNull(lead.getCargo()));
+            statement.setString(6, emptyToNull(lead.getInteres()));
+            statement.setInt(7, lead.getPuntuacion());
+            statement.setString(8, lead.getPrioridad());
+            statement.setString(9, emptyToNull(lead.getObservaciones()));
+            statement.setInt(10, lead.getIdEmpresa());
+            statement.setInt(11, lead.getIdFuente());
+            statement.setInt(12, lead.getIdEstado());
+            statement.setInt(13, lead.getIdUsuarioResponsable());
+
+            return statement.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error al insertar el lead en la base de datos.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private String emptyToNull(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return null;
+        }
+        return value.trim();
+    }
 }

@@ -48,13 +48,22 @@ public class MainMenuFrame extends JFrame {
         JScrollPane scrollPane = new JScrollPane(tableLeads);
         add(scrollPane, BorderLayout.CENTER);
 
+        JButton addButton = new JButton("Añadir lead");
+        addButton.addActionListener(e -> openAddLeadDialog());
+
         JButton refreshButton = new JButton("Recargar leads");
         refreshButton.addActionListener(e -> loadLeads());
 
         JPanel bottomPanel = new JPanel();
+        bottomPanel.add(addButton);
         bottomPanel.add(refreshButton);
 
         add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    private void openAddLeadDialog() {
+        AddLeadFrame dialog = new AddLeadFrame(this, this::loadLeads);
+        dialog.setVisible(true);
     }
 
     private void loadLeads() {
