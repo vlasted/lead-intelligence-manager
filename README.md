@@ -86,7 +86,9 @@ Este repositorio se utiliza como base común del proyecto intermodular, organiza
 
 ## Estado actual del proyecto
 
-Actualmente el proyecto tiene completada gran parte de la base de diseño de datos:
+A## Estado actual del proyecto
+
+Actualmente el proyecto tiene implementadas y documentadas las partes principales del intermodular:
 
 - análisis de datos realizado;
 - diagrama E/R completado;
@@ -94,14 +96,19 @@ Actualmente el proyecto tiene completada gran parte de la base de diseño de dat
 - script SQL de creación de tablas realizado;
 - script de inserción de datos de ejemplo realizado;
 - script de consultas SQL realizado;
-- documento de consultas explicadas redactado.
-
-Pendiente de desarrollo en siguientes fases:
-
-- XML/XSD y validación;
-- informe técnico de Sistemas Informáticos;
-- desarrollo de la aplicación Java con JDBC;
-- mejora estructural para MPO.
+- documento de consultas explicadas redactado;
+- aplicación Java de escritorio desarrollada con Swing;
+- conexión JDBC con MySQL funcionando;
+- login inicial con autenticación desde base de datos;
+- listado de leads cargado desde la base de datos;
+- alta, edición y borrado de leads desde la interfaz;
+- cierre de sesión funcional;
+- XML válido del proyecto;
+- esquema XSD de validación;
+- XML inválido de prueba;
+- documentación de validación XML/XSD;
+- informe técnico del bloque de Sistemas;
+- mejora estructural documentada en MPO.
 
 ## Enfoque del desarrollo
 
@@ -116,6 +123,8 @@ El proyecto se está desarrollando de forma progresiva y modular:
 7. integración con XML/XSD y cierre técnico del proyecto.
 
 ## Acceso de prueba a la aplicación
+
+Antes de ejecutar la aplicación, es necesario configurar en `DatabaseConnection.java` el usuario y la contraseña local de MySQL.
 
 La aplicación incluye un sistema de login conectado a la base de datos `lead_intelligence_manager`.
 
