@@ -115,6 +115,34 @@ El proyecto se está desarrollando de forma progresiva y modular:
 6. desarrollo posterior de la aplicación Java;
 7. integración con XML/XSD y cierre técnico del proyecto.
 
+## Acceso de prueba a la aplicación
+
+La aplicación incluye un sistema de login conectado a la base de datos `lead_intelligence_manager`.
+
+Para acceder y probar la aplicación, se pueden utilizar las siguientes credenciales de demostración:
+
+### Usuario administrador
+- **Email:** `lenin@leadmanager.com`
+- **Contraseña:** `admin123`
+- **Rol:** `admin`
+
+### Usuario comercial
+- **Email:** `marta@leadmanager.com`
+- **Contraseña:** `comercial123`
+- **Rol:** `comercial`
+
+## Nota de uso
+
+Antes de iniciar la aplicación, es necesario:
+
+1. tener MySQL Server en ejecución;
+2. haber ejecutado previamente los archivos:
+    - `sql/schema.sql`
+    - `sql/inserts.sql`
+3. revisar la configuración de conexión en `DatabaseConnection.java`.
+
+Una vez hecho esto, la aplicación puede ejecutarse desde la clase `Main.java`.
+
 ## Autor
 
 Proyecto realizado por Lenin Fonseca como parte del Proyecto Intermodular de 1º DAM.
