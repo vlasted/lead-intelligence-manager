@@ -86,8 +86,6 @@ Este repositorio se utiliza como base común del proyecto intermodular, organiza
 
 ## Estado actual del proyecto
 
-A## Estado actual del proyecto
-
 Actualmente el proyecto tiene implementadas y documentadas las partes principales del intermodular:
 
 - análisis de datos realizado;
