@@ -2,6 +2,7 @@ package com.leadmanager.view;
 
 import com.leadmanager.dao.LeadDAO;
 import com.leadmanager.model.Lead;
+import com.leadmanager.model.Usuario;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -16,13 +17,15 @@ public class MainMenuFrame extends JFrame {
     private JTable tableLeads;
     private DefaultTableModel tableModel;
     private final LeadDAO leadDAO;
+    private final Usuario usuarioLogueado;
 
-    public MainMenuFrame() {
+    public MainMenuFrame(Usuario usuarioLogueado) {
         this.leadDAO = new LeadDAO();
+        this.usuarioLogueado = usuarioLogueado;
 
         setTitle("Lead Intelligence Manager");
-        setSize(1150, 680);
-        setMinimumSize(new Dimension(1000, 600));
+        setSize(1220, 700);
+        setMinimumSize(new Dimension(1100, 620));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
@@ -35,10 +38,27 @@ public class MainMenuFrame extends JFrame {
 
     private void initComponents() {
         JPanel topPanel = new JPanel(new BorderLayout());
+
         JLabel titleLabel = new JLabel("Lead Intelligence Manager", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 34));
-        titleLabel.setBorder(BorderFactory.createEmptyBorder(14, 0, 16, 0));
-        topPanel.add(titleLabel, BorderLayout.CENTER);
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(14, 0, 8, 0));
+
+        String textoUsuario = "Usuario: ";
+        if (usuarioLogueado != null) {
+            textoUsuario += usuarioLogueado.getNombre() + " (" + usuarioLogueado.getRol() + ")";
+        } else {
+            textoUsuario += "sin sesión";
+        }
+
+        JLabel userLabel = new JLabel(textoUsuario, SwingConstants.CENTER);
+        userLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        userLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
+
+        JPanel titleContainer = new JPanel(new GridLayout(2, 1));
+        titleContainer.add(titleLabel);
+        titleContainer.add(userLabel);
+
+        topPanel.add(titleContainer, BorderLayout.CENTER);
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -77,20 +97,47 @@ public class MainMenuFrame extends JFrame {
         JButton refreshButton = new JButton("Recargar leads");
         refreshButton.addActionListener(e -> loadLeads());
 
+        JButton logoutButton = new JButton("Cerrar sesión");
+        logoutButton.addActionListener(e -> logout());
+
         Dimension buttonSize = new Dimension(140, 36);
         addButton.setPreferredSize(buttonSize);
         editButton.setPreferredSize(buttonSize);
         deleteButton.setPreferredSize(buttonSize);
         refreshButton.setPreferredSize(buttonSize);
+        logoutButton.setPreferredSize(new Dimension(150, 36));
 
-        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 14, 12));
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(8, 0, 6, 0));
-        bottomPanel.add(addButton);
-        bottomPanel.add(editButton);
-        bottomPanel.add(deleteButton);
-        bottomPanel.add(refreshButton);
+        JPanel centerButtonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 14, 12));
+        centerButtonsPanel.add(addButton);
+        centerButtonsPanel.add(editButton);
+        centerButtonsPanel.add(deleteButton);
+        centerButtonsPanel.add(refreshButton);
 
-        add(bottomPanel, BorderLayout.SOUTH);
+        JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 12));
+        rightPanel.add(logoutButton);
+
+        JPanel bottomContainer = new JPanel(new BorderLayout());
+        bottomContainer.setBorder(BorderFactory.createEmptyBorder(8, 0, 6, 0));
+        bottomContainer.add(centerButtonsPanel, BorderLayout.CENTER);
+        bottomContainer.add(rightPanel, BorderLayout.EAST);
+
+        add(bottomContainer, BorderLayout.SOUTH);
+    }
+
+    private void logout() {
+        int confirm = JOptionPane.showConfirmDialog(
+                this,
+                "¿Seguro que quieres cerrar sesión?",
+                "Cerrar sesión",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            LoginFrame loginFrame = new LoginFrame();
+            loginFrame.setVisible(true);
+            dispose();
+        }
     }
 
     private void styleTable() {
