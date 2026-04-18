@@ -8,7 +8,7 @@ public class DatabaseConnection {
 
     private static final String URL = "jdbc:mysql://localhost:3306/lead_intelligence_manager";
     private static final String USER = "root";
-    private static final String PASSWORD = "Left4dead2@@";
+    private static final String PASSWORD = "TU_PASSWORD_AQUI";
 
     private DatabaseConnection() {
     }
