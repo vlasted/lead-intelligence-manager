@@ -75,12 +75,12 @@ flowchart TD
     AddLeadFrame --> LeadDAO
     EditLeadFrame --> LeadDAO
 ```
-# Relación con el proyecto
+## Relación con el proyecto
 
 Esta mejora mantiene la funcionalidad del sistema, pero mejora su diseño interno. Por tanto, no se trata de añadir una característica nueva, sino de hacer que el código sea más reutilizable y más ordenado.
 
 Esto encaja con el objetivo de MPO, ya que demuestra una mejora estructural sobre una base ya funcional.
 
-# Conclusión
+## Conclusión
 
 La mejora aplicada en MPO permite justificar una refactorización real del código de la aplicación. Gracias a la creación de LeadFormPanel, la gestión de formularios es ahora más limpia, reutilizable y fácil de mantener.
